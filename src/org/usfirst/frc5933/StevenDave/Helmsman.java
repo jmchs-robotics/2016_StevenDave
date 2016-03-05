@@ -109,26 +109,4 @@ public class Helmsman {
     public final double getCurrentRightMotorPosition() {
         return currentFrontRightMotorPosition_;
     }
-
-    // public void toggleCamera() {
-        // Commented out until we attach a 2nd camera.
-        // RiptServer.stop();
-        // String cameraName = "cam0";
-        // if (server.getCameraName().equals("cam0")) {
-        //       cameraName = "cam1";
-        // }
-        // server = RiptServer.getInstance();
-        // server.setQuality(100);
-        // server.setSize(0);
-        // server.startAutomaticCapture(cameraName);
-        // server.startAutomaticCapture("cam1");
-
-        // TODO: Ok I took a stab at changing the camera view as well, and it is a pain in the ass.
-        // I looked at the CameraFeed class, and after playing around a little while I came to the 
-        // conclusion that we may want to take a different approach and derive/recreate out own 
-        // CameraService class. The server thread
-        // in that class is the thang we want to shutdown, but some clown at wpi decided to hard
-        // code some "while true loops" that can never be stopped.
-    // }
-
 }
