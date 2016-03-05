@@ -31,15 +31,14 @@ public class Helmsman {
     private double initialFrontRightMotorPosition_ = 0;
     private double currentFrontRightMotorPosition_ = 0;
 
-    private static final double FORWARD_V2D = 1;     // Voltage to distance (inches) scalar for forward ultrasonic
+    private static final double FORWARD_V2D = 112;     // Voltage to distance (inches) scalar for forward ultrasonic
     private static final double REAR_V2D = 1;     // Voltage to distance (inches) scalar for rear ultrasonic
     private static final double PORT_V2D = 1;     // Voltage to distance (inches) scalar for port ultrasonic
     private static final double STARBOARD_V2D = 1;     // Voltage to distance (inches) scalar for atarboard ultrasonic
 
-    private static AnalogInput forwardUltrasonic_ = RobotMap.sensorsForwardUltrasonic;
-    private static AnalogInput portUltrasonic_ = RobotMap.sensorsPortUltrasonic;
-    private static AnalogInput starboardUltrasonic_ = RobotMap.sensorsStarboardUltrasonic;
-    private static AnalogInput rearUltrasonic_ = RobotMap.sensorsRearUltrasonic;
+    private static AnalogInput forwardUltrasonic_ = RobotMap.sensorsForwardUltrasonic; //bow
+    private static AnalogInput portUltrasonic_ = RobotMap.sensorsPortUltrasonic; //left
+    private static AnalogInput starboardUltrasonic_ = RobotMap.sensorsStarboardUltrasonic; //right
 
     Helmsman() {
         gyro_.initGyro();
@@ -86,10 +85,6 @@ public class Helmsman {
 
     public final double getForwardUltrasonicDistance() {
         return forwardUltrasonic_.getAverageVoltage() * FORWARD_V2D;
-    }
-
-    public final double getRearUltrasonicDistance() {
-        return rearUltrasonic_.getAverageVoltage() * REAR_V2D;
     }
     
     public final double getPortUltrasonicDistance() {

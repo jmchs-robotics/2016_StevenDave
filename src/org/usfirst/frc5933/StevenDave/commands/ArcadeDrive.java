@@ -13,6 +13,7 @@ package org.usfirst.frc5933.StevenDave.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc5933.StevenDave.Robot;
+import org.usfirst.frc5933.StevenDave.RobotMap;
 
 /**
  *
@@ -43,6 +44,7 @@ public class ArcadeDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.driveTrain.arcadeDrive(Robot.oi.getXBoxJoystick());
+    	System.out.println("Ultrasonic: " + RobotMap.helmsman.getForwardUltrasonicDistance()); //prints to console
     }
 
     // Make this return true when this Command no longer needs to run execute()
