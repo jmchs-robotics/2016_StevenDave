@@ -16,6 +16,8 @@ tmp/
 .project
 /.idea
 .classpath
+.ensime
+.ensime_cache.d/
 
 # Toast/GradleRIO
 run/
