@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CameraServer;
 
 public class Helmsman {
-    private static final double FORWARD_V2D = 1;     // Voltage to distance (inches) scalar for forward ultrasonic
 
     private AnalogGyro gyro_ = RobotMap.sensorsAnalogGyro;
     private double beginingGyroAngle_ = 0;
@@ -20,7 +19,6 @@ public class Helmsman {
     private double initialGyroCenter_ = 0;
     private double initialGyroOffset_ = 0;
     
-    private static AnalogInput forwardUltrasonic_ = RobotMap.sensorsForwardUltrasonic;
     private FieldOfPlay field_ = new FieldOfPlay();
     private BuiltInAccelerometer accel_ = new BuiltInAccelerometer();
     private static CameraServer cameraServer_;
@@ -32,6 +30,16 @@ public class Helmsman {
     private CANTalon frontRightMotor_ = RobotMap.driveTrainFrontRightMotor;
     private double initialFrontRightMotorPosition_ = 0;
     private double currentFrontRightMotorPosition_ = 0;
+
+    private static final double FORWARD_V2D = 1;     // Voltage to distance (inches) scalar for forward ultrasonic
+    private static final double REAR_V2D = 1;     // Voltage to distance (inches) scalar for rear ultrasonic
+    private static final double PORT_V2D = 1;     // Voltage to distance (inches) scalar for port ultrasonic
+    private static final double STARBOARD_V2D = 1;     // Voltage to distance (inches) scalar for atarboard ultrasonic
+
+    private static AnalogInput forwardUltrasonic_ = RobotMap.sensorsForwardUltrasonic;
+    private static AnalogInput portUltrasonic_ = RobotMap.sensorsPortUltrasonic;
+    private static AnalogInput starboardUltrasonic_ = RobotMap.sensorsStarboardUltrasonic;
+    private static AnalogInput rearUltrasonic_ = RobotMap.sensorsRearUltrasonic;
 
     Helmsman() {
         gyro_.initGyro();
@@ -78,6 +86,18 @@ public class Helmsman {
 
     public final double getForwardUltrasonicDistance() {
         return forwardUltrasonic_.getAverageVoltage() * FORWARD_V2D;
+    }
+
+    public final double getRearUltrasonicDistance() {
+        return rearUltrasonic_.getAverageVoltage() * REAR_V2D;
+    }
+    
+    public final double getPortUltrasonicDistance() {
+        return portUltrasonic_.getAverageVoltage() * PORT_V2D;
+    }
+    
+    public final double getStarboardUltrasonicDistance() {
+        return starboardUltrasonic_.getAverageVoltage() * STARBOARD_V2D;
     }
 
     public void initTracking() {

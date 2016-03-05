@@ -84,13 +84,43 @@ Children:
     - Children: []
       Properties:
         Input Channel (Analog): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['0', '1', '2', '3', '4', '5', '6', '7']
+          choices: &id003 ['0', '1', '2', '3', '4', '5', '6', '7']
           default: '0'
           name: Input Channel (Analog)
-          validators: [AnalogInput]
+          validators: &id004 [AnalogInput]
           value: '1'
       Base: Analog Input
       Name: ForwardUltrasonic
+    - Children: []
+      Properties:
+        Input Channel (Analog): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id003
+          default: '0'
+          name: Input Channel (Analog)
+          validators: *id004
+          value: '2'
+      Base: Analog Input
+      Name: PortUltrasonic
+    - Children: []
+      Properties:
+        Input Channel (Analog): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id003
+          default: '0'
+          name: Input Channel (Analog)
+          validators: *id004
+          value: '3'
+      Base: Analog Input
+      Name: StarboardUltrasonic
+    - Children: []
+      Properties:
+        Input Channel (Analog): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id003
+          default: '0'
+          name: Input Channel (Analog)
+          validators: *id004
+          value: '4'
+      Base: Analog Input
+      Name: RearUltrasonic
     Properties:
       Default command parameters: !!robotbuilder.data.properties.ParametersProperty
         default: []
@@ -103,7 +133,7 @@ Children:
         default: []
         name: Constants
         validators: null
-        value: &id003 []
+        value: &id005 []
     Base: Subsystem
     Name: Sensors
   - Children:
@@ -136,7 +166,7 @@ Children:
         default: []
         name: Constants
         validators: null
-        value: *id003
+        value: *id005
     Base: Subsystem
     Name: BallGrabberSubsystem
   Properties: {}
@@ -203,10 +233,10 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: DriveTrain}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id004 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id004
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
@@ -219,15 +249,15 @@ Children:
         validators: null
         value: []
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id005 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id005
+        value: []
       Commands: !!robotbuilder.data.properties.ListProperty
-        default: &id006 []
+        default: []
         name: Commands
         validators: [List]
-        value: *id006
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command Group
@@ -242,10 +272,10 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: DriveTrain}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id007 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id007
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
@@ -260,10 +290,10 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: BallGrabberSubsystem}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id008 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id008
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
@@ -278,10 +308,10 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: BallGrabberSubsystem}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id009 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id009
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
