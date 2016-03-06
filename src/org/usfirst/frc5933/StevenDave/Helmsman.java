@@ -50,8 +50,8 @@ public class Helmsman {
         cameraServer_.setSize(0);
         cameraServer_.startAutomaticCapture("cam0");
         DigitalOutput ultrasonicTrigger_ = new DigitalOutput(1);
-        ultrasonicTrigger_.enablePWM(0.5);
-        ultrasonicTrigger_.setPWMRate(1 / 0.3);
+        ultrasonicTrigger_.enablePWM(0.25);
+        ultrasonicTrigger_.setPWMRate(5);
     }
     
     public void resetGyro() {

@@ -93,12 +93,8 @@ public class DeliverBallToLowerWindow extends CommandGroup {
 
     private void doPath1(int startingPosition, int barrierNumber, int lowerWindowPosition) {
         double path1Speed = -0.5;
-        if (lowerWindowPosition == 1) {
-            //Low bar, path to Lower Window 1
 
-            addSequential(new DriveStraight(path1Speed, 132)); // TODO: The inches are not right
-            addSequential(new DriveStraight(path1Speed, -132)); // TODO: The inches are not right
-        }
+            addSequential(new UltrasonicDriveStraight(path1Speed, 24)); // TODO: The inches are not right
     }
 
     private void doPath2(int startingPosition, int barrierNumber, int lowerWindowPosition) {
