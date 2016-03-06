@@ -51,66 +51,21 @@ public class DriveStraight extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        if (useDumbDashboard_) {
-            speed_ = .8;
-            inches_ = SmartDashboard.getNumber("Inches for driving");
-        }
-
-        // TODO: Until we get the whole encoder thang worked out,
-        // we shouldn't do this.
-        // Robot.driveTrain.changeControlMode(CANTalon.TalonControlMode.Position);
-
-        Robot.driveTrain.enableBrakeMode(true);
-        tickCount_ = (int)(inches_ * SOME_MULTIPLIER);
-        RobotMap.helmsman.resetGyro();
+        Robot.driveTrain.startPositionMovement(100, 100);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-
-        // RobotMap.helmsman.resetGyro();
-        // double angle = RobotMap.helmsman.getGyroAngle();
-        // robotDrive.drive(speed, -angle * Kp);
-        int absoluteCount_ = 0;
-        while (tickCount_ > 0) {
-
-            double angle = RobotMap.helmsman.getCurrentGyroAngle();
-            double curve = angle * 0.003; //worked 2/23/16 as 0.003 
-            Robot.driveTrain.driveStraight(-speed_, -curve); //DO NOT change this
-
-            System.out.println("Ultrasonic: " + RobotMap.helmsman.getForwardUltrasonicDistance());
-
-            if (RobotMap.helmsman.getForwardUltrasonicDistance() < 102){ //drive until 7' away from wall
-                ++absoluteCount_;
-                if (absoluteCount_ > 20){
-                    tickCount_ = -5;
-                    System.out.println("W/in 7'. Stopping Bot");
-                }
-            }
-            //--tickCount_;
-
-            // Timer.delay(0.004);
-
-            // I don't know why we need these delays. Typically this sort of delay
-            // in a method points out a shortcoming of the framework and makes programs
-            // indeterministic. So you could say the suck has been turned up to 11...
-
-        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return tickCount_ == 0;
+        return Robot.driveTrain.hasFinishedPositionMovement();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        // TODO: Until we get the whole encoder thang worked out,
-        // we shouldn't do this.
-        // Robot.driveTrain.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-
-        Robot.driveTrain.enableBrakeMode(false);
-        Robot.driveTrain.stop();
+        Robot.driveTrain.endPositionMovement();
     }
 
     // Called when another command which requires one or more of the same

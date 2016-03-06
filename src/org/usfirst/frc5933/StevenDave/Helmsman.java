@@ -116,6 +116,8 @@ public class Helmsman {
     public void trackPosition() {
         currentFrontLeftMotorPosition_ = frontLeftMotor_.get();
         currentFrontRightMotorPosition_ = frontRightMotor_.get();
+        System.out.println(currentFrontLeftMotorPosition_);
+        System.out.println(currentFrontRightMotorPosition_);
     }
 
     public final double getAcceleromoterZ() {
