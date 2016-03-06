@@ -79,13 +79,12 @@ public class DriveStraight extends Command {
 			double curve = angle * someDegreeOfIntoxication; //worked 2/23/16 as 0.003 "someDegreeOfIntoxication"
 			Robot.driveTrain.driveStraight(-speed_, -curve); //DO NOT change this
 
-			System.out.println("Ultrasonic: " + RobotMap.helmsman.getForwardUltrasonicDistance());
+			System.out.println("Ultrasonic Front: " + RobotMap.helmsman.getForwardUltrasonicDistance() + " - " + "Ultrasonic Left: " + RobotMap.helmsman.getPortUltrasonicDistance() + " - " + "Ultrasonic Right: " + RobotMap.helmsman.getStarboardUltrasonicDistance());
 
 			if (RobotMap.helmsman.getForwardUltrasonicDistance() < inches_){ //drive until x' away from wall
 				++absoluteCount_;
 				if (absoluteCount_ > 15){
 					tickCount_ = 0;
-					System.out.println("W/in 7'. Stopping Bot");
 				}
 			}
 			//--tickCount_;

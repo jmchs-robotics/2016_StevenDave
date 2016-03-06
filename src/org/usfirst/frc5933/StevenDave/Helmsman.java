@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DigitalOutput;
 
 public class Helmsman {
 
@@ -31,10 +32,9 @@ public class Helmsman {
     private double initialFrontRightMotorPosition_ = 0;
     private double currentFrontRightMotorPosition_ = 0;
 
-    private static final double FORWARD_V2D = 112;     // Voltage to distance (inches) scalar for forward ultrasonic
-    private static final double REAR_V2D = 1;     // Voltage to distance (inches) scalar for rear ultrasonic
-    private static final double PORT_V2D = 1;     // Voltage to distance (inches) scalar for port ultrasonic
-    private static final double STARBOARD_V2D = 1;     // Voltage to distance (inches) scalar for atarboard ultrasonic
+    private static final double FORWARD_V2D = 85.7;     // Voltage to distance (inches) scalar for forward ultrasonic
+    private static final double PORT_V2D = 85.7;     // Voltage to distance (inches) scalar for port ultrasonic
+    private static final double STARBOARD_V2D = 85.7;     // Voltage to distance (inches) scalar for starboard ultrasonic
 
     private static AnalogInput forwardUltrasonic_ = RobotMap.sensorsForwardUltrasonic; //bow
     private static AnalogInput portUltrasonic_ = RobotMap.sensorsPortUltrasonic; //left
@@ -49,8 +49,11 @@ public class Helmsman {
         cameraServer_.setQuality(100);
         cameraServer_.setSize(0);
         cameraServer_.startAutomaticCapture("cam0");
+        DigitalOutput ultrasonicTrigger_ = new DigitalOutput(1);
+        ultrasonicTrigger_.enablePWM(0.5);
+        ultrasonicTrigger_.setPWMRate(1 / 0.3);
     }
-
+    
     public void resetGyro() {
         gyro_.reset();
     }

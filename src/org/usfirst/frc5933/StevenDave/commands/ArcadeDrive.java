@@ -44,7 +44,7 @@ public class ArcadeDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.driveTrain.arcadeDrive(Robot.oi.getXBoxJoystick());
-    	System.out.println("Ultrasonic: " + RobotMap.helmsman.getForwardUltrasonicDistance()); //prints to console
+    	System.out.println("Ultrasonic Front: " + RobotMap.helmsman.getForwardUltrasonicDistance() + " - " + "Ultrasonic Left: " + RobotMap.helmsman.getPortUltrasonicDistance() + " - " + "Ultrasonic Right: " + RobotMap.helmsman.getStarboardUltrasonicDistance());
     }
 
     // Make this return true when this Command no longer needs to run execute()
