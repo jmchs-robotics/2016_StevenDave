@@ -93,7 +93,6 @@ public class DeliverBallToLowerWindow extends CommandGroup {
 
 	private void doPath1(int startingPosition, int barrierNumber, int lowerWindowPosition) {
 		double path1Speed = -0.5;
-
 		addSequential(new UltrasonicDriveStraight(path1Speed, 24)); // TODO: The inches are not right
 	}
 

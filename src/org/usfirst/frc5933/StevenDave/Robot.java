@@ -93,7 +93,6 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
-		// schedule the autonomous command (example)
 		RobotMap.helmsman.initTracking();
 		if (autonomousCommand != null) { 
 			((DeliverBallToLowerWindow)autonomousCommand).readDumbDashboard();
@@ -114,7 +113,8 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null) autonomousCommand.cancel();
+		if (autonomousCommand != null) 
+			autonomousCommand.cancel();
 	}
 
 	/**
@@ -126,7 +126,8 @@ public class Robot extends IterativeRobot {
 		turnSpindleIfNeeded();
 		turnWinchIfNeeded();
 
-		if (arcadeDrive != null) arcadeDrive.start();
+		if (arcadeDrive != null) 
+			arcadeDrive.start();
 	}
 
 	public void turnSpindleIfNeeded() {
@@ -134,12 +135,12 @@ public class Robot extends IterativeRobot {
 
 	public void turnWinchIfNeeded() {
 	}
+
 	/**
 	 * Takes the Z Axis of the RoboRIO accelerometer, and passes it to the Joystick for haptic feedback of the robot.
 	 */
 	public void rumbleInYourPants() {
 		double accel_z = RobotMap.helmsman.getAcceleromoterZ();
-
 		Robot.oi.getXBoxJoystick().setRumble(RumbleType.kLeftRumble, (float) Math.abs(accel_z - 1));
 		Robot.oi.getXBoxJoystick().setRumble(RumbleType.kRightRumble, (float) Math.abs(accel_z - 1));
 	}

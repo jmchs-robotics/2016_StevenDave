@@ -61,11 +61,11 @@ public class DriveTrain extends Subsystem {
 
 	public static final int TURN_MAX_TRIES = 1000;
 
-	private TalonControlMode originalmode;
-	private double originalLeftPosition;
-	private double targetLeftRotations;
-	private double originalRightPosition;
-	private double targetRightRotations;
+	private TalonControlMode originalmode_ = TalonControlMode.PercentVbus;
+	private double originalLeftPosition_ = 0;
+	private double targetLeftRotations_ = 0;
+	private double originalRightPosition_ = 0;
+	private double targetRightRotations_ = 0;
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -188,37 +188,30 @@ public class DriveTrain extends Subsystem {
 
 	private void changeControlMode(TalonControlMode mode) {
 		frontLeftMotor.changeControlMode(mode);
-		frontLeftMotor.enableControl();
-
 		frontRightMotor.changeControlMode(mode);
-		frontRightMotor.enableControl();
-
-		if (mode == TalonControlMode.Position) {
-		} else {
-		}
 	}
 
 	public void startPositionMovement(double leftRotations, double rightRotations) {
-		originalmode = frontLeftMotor.getControlMode();
+		originalmode_ = frontLeftMotor.getControlMode();
 
 		// FIXME: Right now, this algorithm does not handle negative rotations since I don't
 		// now what that will do to the position values;
 		if ((leftRotations <= 0) || (rightRotations <= 0)) {
-			targetLeftRotations = 0;
-			targetRightRotations = 0;
-			originalLeftPosition = 0;
-			originalRightPosition = 0;
+			targetLeftRotations_ = 0;
+			targetRightRotations_ = 0;
+			originalLeftPosition_ = 0;
+			originalRightPosition_ = 0;
 			return;
 		}
 
 		changeControlMode(TalonControlMode.Position);
 		setRampRate(AUTO_RAMP_RATE_IN_SECONDS);
 
-		targetLeftRotations = leftRotations;
-		targetRightRotations = rightRotations;
+		targetLeftRotations_ = leftRotations;
+		targetRightRotations_ = rightRotations;
 
 		double frontLeftPosition = frontLeftMotor.getPosition();
-		originalLeftPosition = frontLeftPosition;
+		originalLeftPosition_ = frontLeftPosition;
 		frontLeftPosition += leftRotations;
 
 		// The rear motors are supposed to be in follow mode,
@@ -228,34 +221,28 @@ public class DriveTrain extends Subsystem {
 		// rearLeftPosition += leftRotations;
 
 		double frontRightPosition = frontRightMotor.getPosition();
-		originalRightPosition = frontRightPosition;
+		originalRightPosition_ = frontRightPosition;
 		frontRightPosition += rightRotations;
 
-		// double rearRightPosition = rearRightMotor.getPosition();
-		// rearRightPosition += rightRotations;
-
 		frontLeftMotor.set(frontLeftPosition);
-		// rearLeftMotor.set(rearLeftPosition);
-
 		frontRightMotor.set(frontRightPosition);
-		// rearRightMotor.set(rearRightPosition);
 	}
 
 	public boolean hasFinishedPositionMovement() {
 		// FIXME: Right now, this algorithm does not handle negative rotations since I don't
 		// now what that will do to the position values;
-		if ((targetLeftRotations == 0) && (targetRightRotations == 0)) 
+		if ((targetLeftRotations_ == 0) && (targetRightRotations_ == 0)) 
 			return true;
 
 		double frontLeftPosition = frontLeftMotor.getPosition();
 		boolean leftHasFinished = false;
-		if (frontLeftPosition >= originalLeftPosition + targetLeftRotations) {
+		if (frontLeftPosition >= originalLeftPosition_ + targetLeftRotations_) {
 			leftHasFinished = true;
 		}
 
 		double frontRightPosition = frontRightMotor.getPosition();
 		boolean rightHasFinished = false;
-		if (frontRightPosition >= originalRightPosition + targetRightRotations) {
+		if (frontRightPosition >= originalRightPosition_ + targetRightRotations_) {
 			rightHasFinished = true;
 		}
 
@@ -263,14 +250,7 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void endPositionMovement() {
-		changeControlMode(originalmode);
-
-		// FIXME: It is unclear if I have to do this ....
-		// frontLeftMotor.disableControl();
-		// frontRightMotor.disableControl();
-		// rearLeftMotor.disableControl();
-		// rearRightMotor.disableControl();
-
+		changeControlMode(originalmode_);
 		setRampRate(RAMP_RATE_IN_SECONDS);
 	}
 }
