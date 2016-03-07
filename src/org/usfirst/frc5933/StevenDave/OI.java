@@ -66,7 +66,6 @@ public class OI {
 		SmartDashboard.putData("ArcadeDrive", new ArcadeDrive());
 		SmartDashboard.putData("GyroDriveStraight", new GyroDriveStraight());
 		SmartDashboard.putData("DeliverBallToLowerWindow", new DeliverBallToLowerWindow());
-		SmartDashboard.putData("TurnDegrees", new TurnDegrees());
 		SmartDashboard.putData("ToggleReverseSpindle", new ToggleReverseSpindle());
 		SmartDashboard.putData("UltrasonicDriveStraight", new UltrasonicDriveStraight());
 

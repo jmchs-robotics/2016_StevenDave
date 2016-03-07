@@ -141,7 +141,7 @@ public class DriveTrain extends Subsystem {
 		isReversed = !isReversed;
 	}
 
-	public void turnDegrees(double speed, double degrees) {
+	public void gyroTurnDegrees(double speed, double degrees) {
 		enableBrakeMode(true);
 		RobotMap.helmsman.resetGyro();
 		final double startingAngle = RobotMap.helmsman.getCurrentGyroAngle();

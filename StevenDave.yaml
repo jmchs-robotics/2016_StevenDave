@@ -261,9 +261,9 @@ Children:
         validators: null
         value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
+        name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
-    Name: TurnDegrees
+    Name: GyroTurnDegrees
   - Children: []
     Properties:
       Parameters: !!robotbuilder.data.properties.ParametersProperty
@@ -346,6 +346,6 @@ Properties:
       Van Uitert\', extension: null, folder: true, name: Wiring file location, validators: null,
     value: .\}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-    name: Autonomous Command, type: Command, validators: null, value: Autonomous Command}
+    name: Autonomous Command, type: Command, validators: null, value: DeliverBallToLowerWindow}
 Base: Robot
 Name: StevenDave
