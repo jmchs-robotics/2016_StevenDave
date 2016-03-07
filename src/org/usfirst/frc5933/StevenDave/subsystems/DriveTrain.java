@@ -253,4 +253,9 @@ public class DriveTrain extends Subsystem {
 		changeControlMode(originalmode_);
 		setRampRate(RAMP_RATE_IN_SECONDS);
 	}
+	
+	public void configForTeleopMode() {
+		changeControlMode(TalonControlMode.PercentVbus);
+		setRampRate(RAMP_RATE_IN_SECONDS);
+	}
 }

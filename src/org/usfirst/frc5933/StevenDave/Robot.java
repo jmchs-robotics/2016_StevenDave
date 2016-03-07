@@ -115,6 +115,8 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null) 
 			autonomousCommand.cancel();
+		
+		driveTrain.configForTeleopMode();
 	}
 
 	/**
@@ -123,17 +125,9 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		rumbleInYourPants();
-		turnSpindleIfNeeded();
-		turnWinchIfNeeded();
 
 		if (arcadeDrive != null) 
 			arcadeDrive.start();
-	}
-
-	public void turnSpindleIfNeeded() {
-	}
-
-	public void turnWinchIfNeeded() {
 	}
 
 	/**
