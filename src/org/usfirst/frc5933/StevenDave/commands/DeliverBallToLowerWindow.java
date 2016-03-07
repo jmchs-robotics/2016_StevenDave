@@ -112,7 +112,7 @@ public class DeliverBallToLowerWindow extends CommandGroup {
 			addSequential(new GyroDriveStraight(path2Speed, l1)); // TODO: The inches are not right
 			addSequential(new GyroTurnDegrees(path2Speed, dg)); // TODO: The degrees are not right
 			addSequential(new GyroDriveStraight(path2Speed, l2)); // TODO: The inches are not right
-			addSequential(new ToggleReverseSpindle());
+			addSequential(new ToggleReverseSpindle(5));
 		}
 	}
 
@@ -136,7 +136,7 @@ public class DeliverBallToLowerWindow extends CommandGroup {
 			addSequential(new GyroDriveStraight(path3Speed, l2)); // TODO: The inches are not right
 			addSequential(new GyroTurnDegrees(path3Speed, dg2)); // TODO: The degrees are not right
 			addSequential(new GyroDriveStraight(path3Speed, l3)); // TODO: The inches are not right
-			addSequential(new ToggleReverseSpindle());
+			addSequential(new ToggleReverseSpindle(5));
 		}
 	}
 
@@ -160,7 +160,7 @@ public class DeliverBallToLowerWindow extends CommandGroup {
 			addSequential(new GyroDriveStraight(path4Speed, l2)); // TODO: The inches are not right
 			addSequential(new GyroTurnDegrees(path4Speed, dg2)); // TODO: The degress are not right
 			addSequential(new GyroDriveStraight(path4Speed, l3)); // TODO: The inches are not right
-			addSequential(new ToggleReverseSpindle());
+			addSequential(new ToggleReverseSpindle(5));
 		}
 	}
 
@@ -184,7 +184,7 @@ public class DeliverBallToLowerWindow extends CommandGroup {
 			addSequential(new GyroDriveStraight(path5Speed, l2)); // TODO: The inches are not right
 			addSequential(new GyroTurnDegrees(path5Speed, dg2)); // TODO: The degrees are not right
 			addSequential(new GyroDriveStraight(path5Speed, l3)); // TODO: The inches are not right
-			addSequential(new ToggleReverseSpindle());
+			addSequential(new ToggleReverseSpindle(5));
 		}
 	}
 
@@ -208,7 +208,7 @@ public class DeliverBallToLowerWindow extends CommandGroup {
 			addSequential(new GyroDriveStraight(path6Speed, l1)); 
 			addSequential(new GyroTurnDegrees(path6Speed, dg2));
 			addSequential(new GyroDriveStraight(path6Speed, l2)); 
-			addSequential(new ToggleReverseSpindle());
+			addSequential(new ToggleReverseSpindle(5));
 		}
 	}
 }
