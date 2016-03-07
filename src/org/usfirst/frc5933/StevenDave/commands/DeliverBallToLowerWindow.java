@@ -81,6 +81,8 @@ public class DeliverBallToLowerWindow extends CommandGroup {
 	}
 
 	private void doDefaultPath() {
+		addParallel(new LiftingArmDown(1));
+
 		RobotMap.helmsman.resetGyro();
 		addSequential(new GyroDriveStraight(1.0, 65));
 		addSequential(new GyroTurnDegrees(0.6, 173));
@@ -92,12 +94,17 @@ public class DeliverBallToLowerWindow extends CommandGroup {
 	}
 
 	private void doPath1(int startingPosition, int barrierNumber, int lowerWindowPosition) {
+		addParallel(new LiftingArmDown(1));
+
 		double path1Speed = -0.5;
 		addSequential(new UltrasonicDriveStraight(path1Speed, 24)); // TODO: The inches are not right
 	}
 
 	private void doPath2(int startingPosition, int barrierNumber, int lowerWindowPosition) {
+		addParallel(new LiftingArmDown(1));
+
 		double path2Speed = -0.5;
+
 		if (lowerWindowPosition == 1) {
 			//Barrier 2 to Lower Window 1
 
@@ -117,6 +124,8 @@ public class DeliverBallToLowerWindow extends CommandGroup {
 	}
 
 	private void doPath3(int startingPosition, int barrierNumber, int lowerWindowPosition) {
+		addParallel(new LiftingArmDown(1));
+
 		double path3Speed = -0.5;
 		if (lowerWindowPosition == 1) {
 			//Barrier 3 to Lower Window 1
@@ -141,6 +150,8 @@ public class DeliverBallToLowerWindow extends CommandGroup {
 	}
 
 	private void doPath4(int startingPosition, int barrierNumber, int lowerWindowPosition) {
+		addParallel(new LiftingArmDown(1));
+
 		double path4Speed = -0.5;
 		if (lowerWindowPosition == 1) {
 			//Barrier 4 to Lower Window 1
@@ -165,6 +176,8 @@ public class DeliverBallToLowerWindow extends CommandGroup {
 	}
 
 	private void doPath5(int startingPosition, int barrierNumber, int lowerWindowPosition) {
+		addParallel(new LiftingArmDown(1));
+
 		double path5Speed = -0.5;
 		if (lowerWindowPosition == 1) {
 			//Barrier 5 to Lower Window 1
@@ -189,6 +202,8 @@ public class DeliverBallToLowerWindow extends CommandGroup {
 	}
 
 	private void doPath6(int startingPosition, int barrierNumber, int lowerWindowPosition) {
+		addParallel(new LiftingArmDown(1));
+
 		double path6Speed = -0.5;
 		if (lowerWindowPosition == 1) {
 			//Spy Box to Lower Window 1

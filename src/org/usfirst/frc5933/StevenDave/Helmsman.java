@@ -7,8 +7,6 @@ import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.DigitalOutput;
 
 public class Helmsman {
 
@@ -22,7 +20,7 @@ public class Helmsman {
 
 	private FieldOfPlay field_ = new FieldOfPlay();
 	private BuiltInAccelerometer accel_ = new BuiltInAccelerometer();
-	private static CameraServer cameraServer_;
+	private static RiptServer cameraServer_;
 
 	private CANTalon frontLeftMotor_ = RobotMap.driveTrainFrontLeftMotor;
 	private double initialFrontLeftMotorPosition_ = 0;
@@ -45,7 +43,7 @@ public class Helmsman {
 		beginingGyroAngle_ = gyro_.getAngle();
 		beginingGyroCenter_ = gyro_.getCenter();
 		beginingGyroOffset_ = gyro_.getOffset();
-		cameraServer_ = CameraServer.getInstance();
+		cameraServer_ = RiptServer.getInstance();
 		cameraServer_.setQuality(100);
 		cameraServer_.setSize(0);
 		cameraServer_.startAutomaticCapture("cam0");
