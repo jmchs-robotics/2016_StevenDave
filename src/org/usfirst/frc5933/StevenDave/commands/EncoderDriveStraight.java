@@ -25,7 +25,7 @@ public class EncoderDriveStraight extends Command {
 	private boolean useDumbDashboard_ = true;
 
 	public static final double INCHES_TO_ROTATIONS = 1;
-	
+
 	public EncoderDriveStraight(double speed, double inches) {
 		speed_ = speed;
 		inches_ = inches;
@@ -55,7 +55,6 @@ public class EncoderDriveStraight extends Command {
 			speed_ = .8;
 			inches_ = SmartDashboard.getNumber("Inches for driving");
 		}
-		
 		Robot.driveTrain.startPositionMovement(INCHES_TO_ROTATIONS * inches_, INCHES_TO_ROTATIONS * inches_);
 	}
 

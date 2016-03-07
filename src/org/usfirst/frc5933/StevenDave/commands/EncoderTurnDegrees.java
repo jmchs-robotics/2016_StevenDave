@@ -38,6 +38,8 @@ public class EncoderTurnDegrees extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		// FIXME: This command can use the drivetrain startPositionMovement style code conventions,
+		// however startPositionMovement does not handle negative positions yet....
 	}
 
 	// Called repeatedly when this Command is scheduled to run

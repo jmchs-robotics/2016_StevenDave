@@ -51,6 +51,7 @@ public class GyroTurnDegrees extends Command {
 			speed_ = .5;
 			degrees_ = SmartDashboard.getNumber("Degrees for turning");
 		}
+		Robot.driveTrain.enableBrakeMode(true);
 		// This call blocks execution, (not really ideal, but hey lets go with it for now)
 		// so the operation will return finish during init, so there is no need for us
 		// to call anything in execute. This allows us to return true for the isFinished
@@ -69,6 +70,7 @@ public class GyroTurnDegrees extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
+		Robot.driveTrain.enableBrakeMode(false);
 	}
 
 	// Called when another command which requires one or more of the same

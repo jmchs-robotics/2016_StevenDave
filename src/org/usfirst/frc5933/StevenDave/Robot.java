@@ -94,6 +94,7 @@ public class Robot extends IterativeRobot {
 
 	public void autonomousInit() {
 		RobotMap.helmsman.initTracking();
+		Robot.driveTrain.configForAutonomous();
 		if (autonomousCommand != null) { 
 			((DeliverBallToLowerWindow)autonomousCommand).readDumbDashboard();
 			autonomousCommand.start();
@@ -115,7 +116,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null) 
 			autonomousCommand.cancel();
-		
+
 		driveTrain.configForTeleopMode();
 	}
 
