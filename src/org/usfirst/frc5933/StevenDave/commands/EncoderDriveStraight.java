@@ -20,13 +20,13 @@ import org.usfirst.frc5933.StevenDave.Robot;
  *
  */
 public class EncoderDriveStraight extends Command {
-    private double inches_ = 80;
+    private double inches_ = 0;
     private boolean useDumbDashboard_ = true;
 
     public static final double INCHES_TO_ROTATIONS = .06875;
 
     public EncoderDriveStraight(double speed, double inches) {
-        inches_ = 0;
+        inches_ = inches;
         useDumbDashboard_ = false;
     }
 
@@ -52,8 +52,6 @@ public class EncoderDriveStraight extends Command {
         if (useDumbDashboard_) {
             inches_ = SmartDashboard.getNumber("Inches for driving");
         }
-
-        inches_ = 40;
         Robot.driveTrain.startPositionMovement(INCHES_TO_ROTATIONS * inches_, INCHES_TO_ROTATIONS * inches_);
     }
 
@@ -64,8 +62,7 @@ public class EncoderDriveStraight extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
-        // return Robot.driveTrain.hasFinishedPositionMovement();
+        return Robot.driveTrain.hasFinishedPositionMovement();
     }
 
     // Called once after isFinished returns true
