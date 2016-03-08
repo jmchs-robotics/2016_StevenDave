@@ -25,7 +25,7 @@ public class EncoderDriveStraight extends Command {
 
     public static final double INCHES_TO_ROTATIONS = .06875;
 
-    public EncoderDriveStraight(double speed, double inches) {
+    public EncoderDriveStraight(double inches) {
         inches_ = inches;
         useDumbDashboard_ = false;
     }

@@ -210,7 +210,7 @@ public class DriveTrain extends Subsystem {
 
     // Let switch the ramp rates for teleop and autonomous for differing reasons.
     // For teleop we don't want to brown out.
-    // For autonmous we want to keep as much accuracy as possbile.
+    // For autonmous we want to keep as much accuracy as possible.
     private void setRampRate(int rate) {
         frontLeftMotor.setVoltageRampRate(rate);
         frontRightMotor.setVoltageRampRate(rate);
@@ -226,14 +226,6 @@ public class DriveTrain extends Subsystem {
     // Set up the position movement variables adn configuration.
     public void startPositionMovement(double leftRotations, double rightRotations) {
         configForAutonomous();
-
-        // FIXME: Right now, this algorithm does not handle negative rotations since I don't
-        // now what that will do to the position values;
-        if ((leftRotations <= 0) || (rightRotations <= 0)) {
-            targetLeftPosition_ = 0;
-            targetRightPosition_ = 0;
-            return;
-        }
 
         lastLeftPosition_ = 0;
         sameLeftCount_ = 0;
@@ -370,7 +362,8 @@ public class DriveTrain extends Subsystem {
         // https://github.com/CrossTheRoadElec
            
         changeControlMode(TalonControlMode.Position);
-        setRampRate(AUTO_RAMP_RATE_IN_SECONDS);
+        // I think this interfering with the error correction
+        // setRampRate(AUTO_RAMP_RATE_IN_SECONDS);
 
         setTalonAbsolutePosition(frontLeftMotor);
         setTalonAbsolutePosition(frontRightMotor);
