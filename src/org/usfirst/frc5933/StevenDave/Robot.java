@@ -94,8 +94,10 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
+        RobotMap.enableUltrasonicTrigger(true);
         RobotMap.helmsman.initTracking();
         Robot.driveTrain.configForAutonomous();
+
         if (autonomousCommand != null) { 
             autonomousCommand.start();
         }
@@ -117,6 +119,7 @@ public class Robot extends IterativeRobot {
         if (autonomousCommand != null) 
             autonomousCommand.cancel();
 
+        RobotMap.enableUltrasonicTrigger(false);
         driveTrain.configForTeleopMode();
     }
 

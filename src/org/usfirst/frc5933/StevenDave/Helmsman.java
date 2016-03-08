@@ -99,16 +99,16 @@ public class Helmsman {
         initialGyroCenter_ = gyro_.getCenter();
         initialGyroOffset_ = gyro_.getOffset();
 
-        initialFrontLeftMotorPosition_ = frontLeftMotor_.get();
+        initialFrontLeftMotorPosition_ = frontLeftMotor_.getPosition();
         currentFrontLeftMotorPosition_ = initialFrontLeftMotorPosition_;
 
-        initialFrontRightMotorPosition_ = frontRightMotor_.get();
+        initialFrontRightMotorPosition_ = frontRightMotor_.getPosition();
         currentFrontRightMotorPosition_ = initialFrontRightMotorPosition_;
     }
 
     public void trackPosition() {
-        currentFrontLeftMotorPosition_ = frontLeftMotor_.get();
-        currentFrontRightMotorPosition_ = frontRightMotor_.get();
+        currentFrontLeftMotorPosition_ = frontLeftMotor_.getPosition();
+        currentFrontRightMotorPosition_ = frontRightMotor_.getPosition();
     }
 
     public final double getAcceleromoterZ() {
