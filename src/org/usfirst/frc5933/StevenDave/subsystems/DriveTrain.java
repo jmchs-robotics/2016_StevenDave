@@ -83,6 +83,9 @@ public class DriveTrain extends Subsystem {
     // who gets their position (Left and Right motors) set first.
     private boolean setLeftFirst_ = true;
     
+    // Are we close to the position end ?
+    private static final double POSITION_CLOSE = 200;
+    
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -386,6 +389,22 @@ public class DriveTrain extends Subsystem {
         setClosedLoopGains(frontRightMotor);
     }
 
+    private boolean closeToEndPosition() {
+        double leftPosition = Math.abs(lastLeftPosition_ * 1000);
+        double rightPosition = Math.abs(lastRightPosition_ * 1000);
+        
+        boolean leftIsClose = false;
+        if (Math.abs(targetLeftPosition_ * 1000) - leftPosition < POSITION_CLOSE) {
+            leftIsClose = true;
+        }
+        boolean rightIsClose = false;
+        if (Math.abs(targetRightPosition_ * 1000) - rightPosition < POSITION_CLOSE) {
+            rightIsClose = true;
+        }
+        
+        return leftIsClose && rightIsClose;
+    }
+    
     // Called by a command to run the position movement.
     public void executePositionMove() {
         if (setLeftFirst_) {
@@ -399,6 +418,12 @@ public class DriveTrain extends Subsystem {
 
         lastLeftPosition_ = frontLeftMotor.getPosition();
         lastRightPosition_ = frontRightMotor.getPosition();
+
+        // Slow down the position movement so we don't have to do as much correction
+        if (closeToEndPosition()) {
+            configVoltages(frontLeftMotor, 0, 6);
+            configVoltages(frontRightMotor, 0, 6);
+        }
 
         printEncoderDebugging(true);
     }
