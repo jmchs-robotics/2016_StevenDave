@@ -911,6 +911,6 @@ Properties:
       Van Uitert\', extension: null, folder: true, name: Wiring file location, validators: null,
     value: .\}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-    name: Autonomous Command, type: Command, validators: null, value: EncoderDriveStraight}
+    name: Autonomous Command, type: Command, validators: null, value: Pos1LowBar}
 Base: Robot
 Name: StevenDave
