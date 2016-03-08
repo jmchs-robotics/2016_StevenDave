@@ -13,7 +13,7 @@ Children:
             default: '2'
             name: CAN ID
             validators: &id002 [CANID]
-            value: '0'
+            value: '1'
         Base: CAN Talon
         Name: FrontLeftMotor
       - Children: []
@@ -23,7 +23,7 @@ Children:
             default: '2'
             name: CAN ID
             validators: *id002
-            value: '1'
+            value: '0'
         Base: CAN Talon
         Name: FrontRightMotor
       Properties:
@@ -268,7 +268,7 @@ Children:
         validators: null
         value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
+        name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: ArcadeDrive
   - Children: []
@@ -340,7 +340,7 @@ Children:
         validators: null
         value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
+        name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: ToggleReverseSpindle
   - Children: []
@@ -911,6 +911,6 @@ Properties:
       Van Uitert\', extension: null, folder: true, name: Wiring file location, validators: null,
     value: .\}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-    name: Autonomous Command, type: Command, validators: null, value: Pos1LowBar}
+    name: Autonomous Command, type: Command, validators: null, value: EncoderDriveStraight}
 Base: Robot
 Name: StevenDave
