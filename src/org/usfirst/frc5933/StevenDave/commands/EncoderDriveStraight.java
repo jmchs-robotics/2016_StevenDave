@@ -52,6 +52,7 @@ public class EncoderDriveStraight extends Command {
         if (useDumbDashboard_) {
             inches_ = SmartDashboard.getNumber("Inches for driving");
         }
+        System.out.println("inches: " + inches_);
         Robot.driveTrain.startPositionMovement(INCHES_TO_ROTATIONS * inches_, INCHES_TO_ROTATIONS * inches_);
     }
 

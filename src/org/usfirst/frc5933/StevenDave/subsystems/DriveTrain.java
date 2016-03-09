@@ -69,29 +69,29 @@ public class DriveTrain extends Subsystem {
     private double lastRightPosition_ = 0;
     private double sameLeftCount_ = 0;
     private double sameRightCount_ = 0;
-    private final static double FINISHED_POSITION_MOVEMENT_POSITION_COUNT = 5;
-    
+    private final static double FINISHED_POSITION_MOVEMENT_POSITION_COUNT = 50;
+
     // Use a string builder private data member since it is a ton more efficient
     // in building debug output. Sting concatenation is notoriously in-efficient.
     private StringBuilder encoderDebugString_ = new StringBuilder();
-    
+
     // Debounce the debug output a bit so we don't use up all of the CPU.
     private int encoderDebugOutputCount_ = 0;
     private static final double ENCODER_DEBUG_COUNT = 10;
-    
+
     // To try and keep the robot driving straight we will flip the sequence of
     // who gets their position (Left and Right motors) set first.
     private boolean setLeftFirst_ = true;
-    
+
     // Are we close to the position end ?
     private static final double POSITION_CLOSE = 200;
-    
+
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
     public DriveTrain() {
         super();
-        
+
         // Make sure that the encoders and position data are counting in the right direction
         frontRightMotor.reverseOutput(true);
         frontRightMotor.reverseSensor(false);
@@ -127,7 +127,7 @@ public class DriveTrain extends Subsystem {
         y *= turboMultiplier;
         x *= turboMultiplier;
 
-        
+
         // If we want the arcade to drive straight, we will need
         // to scale x by some factor.
         // I think the best way to do this is to temporarily set x to zero,
@@ -363,7 +363,7 @@ public class DriveTrain extends Subsystem {
         // the Talon software manual and looking at source code from Cross 
         // The Road Electronics. I found CTRE source code from git hub:
         // https://github.com/CrossTheRoadElec
-           
+
         changeControlMode(TalonControlMode.Position);
         // I think this interfering with the error correction
         // setRampRate(AUTO_RAMP_RATE_IN_SECONDS);
@@ -392,7 +392,7 @@ public class DriveTrain extends Subsystem {
     private boolean closeToEndPosition() {
         double leftPosition = Math.abs(lastLeftPosition_ * 1000);
         double rightPosition = Math.abs(lastRightPosition_ * 1000);
-        
+
         boolean leftIsClose = false;
         if (Math.abs(targetLeftPosition_ * 1000) - leftPosition < POSITION_CLOSE) {
             leftIsClose = true;
@@ -401,10 +401,10 @@ public class DriveTrain extends Subsystem {
         if (Math.abs(targetRightPosition_ * 1000) - rightPosition < POSITION_CLOSE) {
             rightIsClose = true;
         }
-        
+
         return leftIsClose && rightIsClose;
     }
-    
+
     // Called by a command to run the position movement.
     public void executePositionMove() {
         if (setLeftFirst_) {
@@ -421,8 +421,10 @@ public class DriveTrain extends Subsystem {
 
         // Slow down the position movement so we don't have to do as much correction
         if (closeToEndPosition()) {
-            configVoltages(frontLeftMotor, 0, 6);
-            configVoltages(frontRightMotor, 0, 6);
+            // FIXME: This is commented out since it was doing this more than once when we got close....
+            // need to fix that.
+            // configVoltages(frontLeftMotor, 0, 6);
+            // configVoltages(frontRightMotor, 0, 6);
         }
 
         printEncoderDebugging(true);

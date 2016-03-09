@@ -23,7 +23,7 @@ public class EncoderTurnDegrees extends Command {
     private double degrees_ = 0;
     private boolean useDumbDashboard_ = true;
     private static final double ROTATIONS_TO_DEGREES = 1; // FIXME: What is this value ????
-    
+
     public EncoderTurnDegrees(double degrees) {
         degrees_ = degrees;
         useDumbDashboard_ = false;
@@ -51,7 +51,7 @@ public class EncoderTurnDegrees extends Command {
         if (useDumbDashboard_) {
             degrees_ = SmartDashboard.getNumber("Degrees for turning");
         }
-        
+
         double leftRotations = ROTATIONS_TO_DEGREES * degrees_;
         double rightRotations = ROTATIONS_TO_DEGREES * degrees_;
         if (degrees_ > 0) {
@@ -59,7 +59,7 @@ public class EncoderTurnDegrees extends Command {
         } else {
             rightRotations *= -1;
         }
-        
+
         Robot.driveTrain.startPositionMovement(leftRotations, rightRotations);
     }
 
