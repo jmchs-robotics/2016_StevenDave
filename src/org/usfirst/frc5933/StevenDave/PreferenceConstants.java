@@ -32,4 +32,12 @@ public class PreferenceConstants {
     public static final String AUTONOMOUS_COMMAND_EC_TRURNDEGREES       = "EncoderTurnDegrees";
     
     public static final String DEBUG_SUBSYSTEM_DRIVE_TRAIN_KEY          = "DebugDriveTrain";
+    
+    public static final String CLOSED_LOOP_FEEDFORWARD_KEY              = "ClosedLoopFeedForward";
+    public static final String CLOSED_LOOP_PORPORTIONAL_KEY             = "ClosedLoopPorportional";
+    public static final String CLOSED_LOOP_INTEGRATION_KEY              = "ClosedLoopIntegration";
+    public static final String CLOSED_LOOP_DERIVATIVE_KEY               = "ClosedLoopDerivative";
+    
+    public static final String INCHES_TO_ROTATIONS                      = "InchesToRotations";
+    public static final String DEGREES_TO_ROTATIONS                     = "DegreesToRotations";
 }

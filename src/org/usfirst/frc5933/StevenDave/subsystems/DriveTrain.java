@@ -90,12 +90,18 @@ public class DriveTrain extends Subsystem {
 
     private boolean debug_ = false;
     
+    private double closedLoopFeedForward_ = 0;
+    private double closedLoopPorportional_ = 0.13;
+    private double closedLoopIntegration_ = 0;
+    private double closedLoopDerivative_ = 0;
+    
+    
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
     public DriveTrain() {
         super();
-
+        
         // use the preferences to determine if we should debug this subsystem
         if (Preferences.getInstance().containsKey(PreferenceConstants.DEBUG_SUBSYSTEM_DRIVE_TRAIN_KEY)) {
             debug_ = Preferences.getInstance().getBoolean(PreferenceConstants.DEBUG_SUBSYSTEM_DRIVE_TRAIN_KEY, false);
@@ -369,11 +375,17 @@ public class DriveTrain extends Subsystem {
 
     // Internal convenience method
     private void setClosedLoopGains(CANTalon talon) {
+
+        closedLoopFeedForward_ = Preferences.getInstance().getDouble(PreferenceConstants.CLOSED_LOOP_FEEDFORWARD_KEY, closedLoopFeedForward_);
+        closedLoopPorportional_ = Preferences.getInstance().getDouble(PreferenceConstants.CLOSED_LOOP_PORPORTIONAL_KEY, closedLoopPorportional_);
+        closedLoopIntegration_ = Preferences.getInstance().getDouble(PreferenceConstants.CLOSED_LOOP_INTEGRATION_KEY, closedLoopIntegration_);
+        closedLoopDerivative_ = Preferences.getInstance().getDouble(PreferenceConstants.CLOSED_LOOP_DERIVATIVE_KEY, closedLoopDerivative_);
+
         talon.setProfile(0);
-        talon.setF(0.0);
-        talon.setP(0.13);
-        talon.setI(0.0); 
-        talon.setD(0.0);    
+        talon.setF(closedLoopFeedForward_);
+        talon.setP(closedLoopPorportional_);
+        talon.setI(closedLoopIntegration_); 
+        talon.setD(closedLoopDerivative_);    
     }
 
     // I think the method names says it all.

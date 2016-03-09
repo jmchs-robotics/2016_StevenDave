@@ -11,9 +11,11 @@
 
 package org.usfirst.frc5933.StevenDave.commands;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc5933.StevenDave.PreferenceConstants;
 import org.usfirst.frc5933.StevenDave.Robot;
 
 /**
@@ -23,8 +25,9 @@ public class EncoderDriveStraight extends Command {
     private double inches_ = 0;
     private boolean useDumbDashboard_ = true;
 
-    public static final double INCHES_TO_ROTATIONS = .06875;
+    private double inchesToRotations_ = .06875;
 
+    
     public EncoderDriveStraight(double inches) {
         inches_ = inches;
         useDumbDashboard_ = false;
@@ -52,8 +55,8 @@ public class EncoderDriveStraight extends Command {
         if (useDumbDashboard_) {
             inches_ = SmartDashboard.getNumber("Inches for driving");
         }
-        System.out.println("inches: " + inches_);
-        Robot.driveTrain.startPositionMovement(INCHES_TO_ROTATIONS * inches_, INCHES_TO_ROTATIONS * inches_);
+        inchesToRotations_ = Preferences.getInstance().getDouble(PreferenceConstants.INCHES_TO_ROTATIONS, inchesToRotations_);
+        Robot.driveTrain.startPositionMovement(inchesToRotations_ * inches_, inchesToRotations_ * inches_);
     }
 
     // Called repeatedly when this Command is scheduled to run

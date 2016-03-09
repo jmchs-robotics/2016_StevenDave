@@ -11,9 +11,11 @@
 
 package org.usfirst.frc5933.StevenDave.commands;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc5933.StevenDave.PreferenceConstants;
 import org.usfirst.frc5933.StevenDave.Robot;
 
 /**
@@ -22,8 +24,8 @@ import org.usfirst.frc5933.StevenDave.Robot;
 public class EncoderTurnDegrees extends Command {
     private double degrees_ = 0;
     private boolean useDumbDashboard_ = true;
-    private static final double ROTATIONS_TO_DEGREES = 1; // FIXME: What is this value ????
-
+    private double degreesToRotations_ = 1;  // FIXME: Put a reasonable default value here.
+    
     public EncoderTurnDegrees(double degrees) {
         degrees_ = degrees;
         useDumbDashboard_ = false;
@@ -51,9 +53,10 @@ public class EncoderTurnDegrees extends Command {
         if (useDumbDashboard_) {
             degrees_ = SmartDashboard.getNumber("Degrees for turning");
         }
+        degreesToRotations_ = Preferences.getInstance().getDouble(PreferenceConstants.DEGREES_TO_ROTATIONS, degreesToRotations_);
 
-        double leftRotations = ROTATIONS_TO_DEGREES * degrees_;
-        double rightRotations = ROTATIONS_TO_DEGREES * degrees_;
+        double leftRotations = degreesToRotations_ * degrees_;
+        double rightRotations = degreesToRotations_ * degrees_;
         if (degrees_ > 0) {
             leftRotations *= -1;
         } else {
