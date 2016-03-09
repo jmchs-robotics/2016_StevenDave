@@ -76,52 +76,51 @@ public class Robot extends IterativeRobot {
     }
 
     private void configAutonomousCommand() {
-        final String key = "AutonomousCommand";
         Preferences prefs = Preferences.getInstance();
-        if (!prefs.containsKey(key)) {
+        if (!prefs.containsKey(PreferenceConstants.AUTONOMOUS_COMMAND_KEY)) {
             return;
         }
-        String ac = prefs.getString(key, "unknown");
-        if (ac.compareTo("Pos2Mote") == 0) {
+        String ac = prefs.getString(PreferenceConstants.AUTONOMOUS_COMMAND_KEY, PreferenceConstants.BACKUP_VALUE);
+        if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS1_LOWBAR) == 0) {
+            autonomousCommand = new Pos1LowBar(); 
+        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS2_MOTE) == 0) {
             autonomousCommand = new Pos2Mote(); 
-        } else if (ac.compareTo("Pos2RockWall") == 0) {
+        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS2_ROCKWALL) == 0) {
             autonomousCommand = new Pos2RockWall(); 
-        } else if (ac.compareTo("Pos2Rampart") == 0) {
+        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS2_RAMPART) == 0) {
             autonomousCommand = new Pos2Rampart();
-        } else if (ac.compareTo("Pos2RoughTerrain") == 0) {
+        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS2_ROUGHTERRAIN) == 0) {
             autonomousCommand = new Pos2RoughTerrain();
-        } else if (ac.compareTo("Pos3Mote") == 0) {
+        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS3_MOTE) == 0) {
             autonomousCommand = new Pos3Mote(); 
-        } else if (ac.compareTo("Pos3RockWall") == 0) {
+        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS3_ROCKWALL) == 0) {
             autonomousCommand = new Pos3RockWall(); 
-        } else if (ac.compareTo("Pos3Rampart") == 0) {
+        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS3_RAMPART) == 0) {
             autonomousCommand = new Pos3Rampart();
-        } else if (ac.compareTo("Pos3RoughTerrain") == 0) {
+        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS3_ROUGHTERRAIN) == 0) {
             autonomousCommand = new Pos3RoughTerrain();
-        } else if (ac.compareTo("Pos4Mote") == 0) {
+        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS4_MOTE) == 0) {
             autonomousCommand = new Pos4Mote(); 
-        } else if (ac.compareTo("Pos4RockWall") == 0) {
+        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS4_ROCKWALL) == 0) {
             autonomousCommand = new Pos4RockWall(); 
-        } else if (ac.compareTo("Pos4Rampart") == 0) {
+        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS4_ROCKWALL) == 0) {
             autonomousCommand = new Pos4Rampart();
-        } else if (ac.compareTo("Pos4RoughTerrain") == 0) {
+        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS4_ROUGHTERRAIN) == 0) {
             autonomousCommand = new Pos4RoughTerrain();
-        } else if (ac.compareTo("Pos5Mote") == 0) {
+        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS5_MOTE) == 0) {
             autonomousCommand = new Pos5Mote(); 
-        } else if (ac.compareTo("Pos5RockWall") == 0) {
+        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS5_ROCKWALL) == 0) {
             autonomousCommand = new Pos5RockWall(); 
-        } else if (ac.compareTo("Pos5Rampart") == 0) {
+        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS5_RAMPART) == 0) {
             autonomousCommand = new Pos5Rampart();
-        } else if (ac.compareTo("Pos5RoughTerrain") == 0) {
+        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS5_ROUGHTERRAIN) == 0) {
             autonomousCommand = new Pos5RoughTerrain();
-        } else if (ac.compareTo("SpyBox") == 0) {
+        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_SPYBOX) == 0) {
             autonomousCommand = new SpyBox();
-        } else if (ac.compareTo("EncoderDriveStraight") == 0) {
+        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_EC_DRIVESTRAIGHT) == 0) {
             autonomousCommand = new EncoderDriveStraight();
-        } else if (ac.compareTo("EncoderTurnDegrees") == 0) {
+        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_EC_TRURNDEGREES) == 0) {
             autonomousCommand = new EncoderTurnDegrees();
-        } else if (ac.compareTo("SpyBox") == 0) {
-            autonomousCommand = new SpyBox();
         }
 
         System.out.println("Autonomous Command is: " + autonomousCommand.getName());

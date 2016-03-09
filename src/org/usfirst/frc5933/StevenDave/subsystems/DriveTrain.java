@@ -11,6 +11,7 @@
 
 package org.usfirst.frc5933.StevenDave.subsystems;
 
+import org.usfirst.frc5933.StevenDave.PreferenceConstants;
 import org.usfirst.frc5933.StevenDave.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
@@ -19,7 +20,7 @@ import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Joystick;
-
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -84,13 +85,21 @@ public class DriveTrain extends Subsystem {
     private boolean setLeftFirst_ = true;
 
     // Are we close to the position end ?
+    private boolean isCloseDebounce_ = false;
     private static final double POSITION_CLOSE = 200;
 
+    private boolean debug_ = false;
+    
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
     public DriveTrain() {
         super();
+
+        // use the preferences to determine if we should debug this subsystem
+        if (Preferences.getInstance().containsKey(PreferenceConstants.DEBUG_SUBSYSTEM_DRIVE_TRAIN_KEY)) {
+            debug_ = Preferences.getInstance().getBoolean(PreferenceConstants.DEBUG_SUBSYSTEM_DRIVE_TRAIN_KEY, false);
+        }
 
         // Make sure that the encoders and position data are counting in the right direction
         frontRightMotor.reverseOutput(true);
@@ -136,7 +145,9 @@ public class DriveTrain extends Subsystem {
         // x remain like it should and see how well it works. Make sure to handle
         // the cases where x is: 0, -, +.
 
-        printEncoderDebugging(true);
+        if (debug_)
+            printEncoderDebugging(true);
+        
         robotDrive.arcadeDrive(-y, x);
     }
 
@@ -186,7 +197,8 @@ public class DriveTrain extends Subsystem {
                 now = RobotMap.helmsman.getCurrentGyroAngle();
                 --tries;
                 if (tries == 0) {
-                    System.err.println("Failed to turn specified degrees.");
+                    if (debug_)
+                        System.err.println("Failed to turn specified degrees.");
                     break;
                 }
             } while (now < desired);
@@ -196,7 +208,8 @@ public class DriveTrain extends Subsystem {
                 now = RobotMap.helmsman.getCurrentGyroAngle();
                 --tries;
                 if (tries == 0) {
-                    System.err.println("Failed to turn specified degrees.");
+                    if (debug_)
+                        System.err.println("Failed to turn specified degrees.");
                     break;
                 }
             } while (now > startingAngle + degrees);
@@ -234,15 +247,19 @@ public class DriveTrain extends Subsystem {
         sameLeftCount_ = 0;
         lastRightPosition_ = 0;
         sameRightCount_ = 0;
-
+        
+        isCloseDebounce_ = false;
+        
         targetLeftPosition_ = frontLeftMotor.getPosition() + leftRotations;
         targetRightPosition_ = frontRightMotor.getPosition() + rightRotations;
 
         // The rear motors are supposed to be in follow mode,
         // so we don't have to set the position for these
         // motors.
-        System.out.println("Start Position Movement");
-        printEncoderDebugging(false);
+        if (debug_) {
+            System.out.println("Start Position Movement");
+            printEncoderDebugging(false);
+        }
 
         if (setLeftFirst_) {
             frontLeftMotor.set(targetLeftPosition_);
@@ -311,8 +328,10 @@ public class DriveTrain extends Subsystem {
 
     // Cleanup any position movement configuration.
     public void endPositionMovement() {
-        System.out.println("End Position Movement");
-        printEncoderDebugging(false);
+        if (debug_) {
+            System.out.println("End Position Movement");
+            printEncoderDebugging(false);
+        }
         configForTeleopMode();
     }
 
@@ -407,6 +426,7 @@ public class DriveTrain extends Subsystem {
 
     // Called by a command to run the position movement.
     public void executePositionMove() {
+        // Switch between left and right to hopefully drive a bit straighter.
         if (setLeftFirst_) {
             frontLeftMotor.set(targetLeftPosition_);
             frontRightMotor.set(targetRightPosition_);
@@ -416,17 +436,22 @@ public class DriveTrain extends Subsystem {
         }
         setLeftFirst_ = !setLeftFirst_;
 
+        // Make sure to set the last position so the executePosition method can tell if
+        // we re done.
         lastLeftPosition_ = frontLeftMotor.getPosition();
         lastRightPosition_ = frontRightMotor.getPosition();
 
         // Slow down the position movement so we don't have to do as much correction
         if (closeToEndPosition()) {
-            // FIXME: This is commented out since it was doing this more than once when we got close....
-            // need to fix that.
-            // configVoltages(frontLeftMotor, 0, 6);
-            // configVoltages(frontRightMotor, 0, 6);
+            if (!isCloseDebounce_) {
+                if (debug_)
+                    System.out.println("Position movement is getting close");
+                isCloseDebounce_ = true;
+                // configVoltages(frontLeftMotor, 0, 6);
+                // configVoltages(frontRightMotor, 0, 6);
+            }
         }
-
-        printEncoderDebugging(true);
+        if (debug_)
+            printEncoderDebugging(true);
     }
 }
