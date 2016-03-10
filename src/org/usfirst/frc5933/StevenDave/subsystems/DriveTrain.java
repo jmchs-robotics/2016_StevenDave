@@ -89,19 +89,19 @@ public class DriveTrain extends Subsystem {
     private static final double POSITION_CLOSE = 200;
 
     private boolean debug_ = false;
-    
+
     private double closedLoopFeedForward_ = 0;
-    private double closedLoopPorportional_ = 0.13;
+    private double closedLoopPorportional_ = 0.115;
     private double closedLoopIntegration_ = 0;
     private double closedLoopDerivative_ = 0;
-    
-    
+
+
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
     public DriveTrain() {
         super();
-        
+
         // use the preferences to determine if we should debug this subsystem
         if (Preferences.getInstance().containsKey(PreferenceConstants.DEBUG_SUBSYSTEM_DRIVE_TRAIN_KEY)) {
             debug_ = Preferences.getInstance().getBoolean(PreferenceConstants.DEBUG_SUBSYSTEM_DRIVE_TRAIN_KEY, false);
@@ -153,7 +153,7 @@ public class DriveTrain extends Subsystem {
 
         if (debug_)
             printEncoderDebugging(true);
-        
+
         robotDrive.arcadeDrive(-y, x);
     }
 
@@ -253,9 +253,9 @@ public class DriveTrain extends Subsystem {
         sameLeftCount_ = 0;
         lastRightPosition_ = 0;
         sameRightCount_ = 0;
-        
+
         isCloseDebounce_ = false;
-        
+
         targetLeftPosition_ = frontLeftMotor.getPosition() + leftRotations;
         targetRightPosition_ = frontRightMotor.getPosition() + rightRotations;
 

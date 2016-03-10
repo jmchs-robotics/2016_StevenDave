@@ -24,10 +24,9 @@ import org.usfirst.frc5933.StevenDave.Robot;
 public class EncoderDriveStraight extends Command {
     private double inches_ = 0;
     private boolean useDumbDashboard_ = true;
+    private double inchesToRotations_ = .079;
 
-    private double inchesToRotations_ = .06875;
 
-    
     public EncoderDriveStraight(double inches) {
         inches_ = inches;
         useDumbDashboard_ = false;

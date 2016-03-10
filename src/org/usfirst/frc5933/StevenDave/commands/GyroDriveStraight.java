@@ -11,9 +11,11 @@
 
 package org.usfirst.frc5933.StevenDave.commands;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc5933.StevenDave.PreferenceConstants;
 import org.usfirst.frc5933.StevenDave.Robot;
 import org.usfirst.frc5933.StevenDave.RobotMap;
 
@@ -27,11 +29,17 @@ public class GyroDriveStraight extends Command {
     private int tickCount_ = 0;
     public final static double SOME_MULTIPLIER = 5.5;
     public final static double someDegreeOfIntoxication = 0.003;
+    private boolean debug_ = false;
 
     public GyroDriveStraight(double speed, double inches) {
         speed_ = speed;
         inches_ = inches;
         useDumbDashboard_ = false;
+
+        // use the preferences to determine if we should debug this subsystem
+        if (Preferences.getInstance().containsKey(PreferenceConstants.DEBUG_SUBSYSTEM_GYRO_KEY)) {
+            debug_ = Preferences.getInstance().getBoolean(PreferenceConstants.DEBUG_SUBSYSTEM_GYRO_KEY, false);
+        }
     }
 
 
@@ -70,7 +78,8 @@ public class GyroDriveStraight extends Command {
             double curve = angle * someDegreeOfIntoxication; //worked 2/23/16 as 0.003 "someDegreeOfIntoxication"
             Robot.driveTrain.driveStraight(-speed_, -curve); //DO NOT change this
 
-            // System.out.println("Ultrasonic Front: " + RobotMap.helmsman.getForwardUltrasonicDistance() + " - " + "Ultrasonic Left: " + RobotMap.helmsman.getPortUltrasonicDistance() + " - " + "Ultrasonic Right: " + RobotMap.helmsman.getStarboardUltrasonicDistance());
+            if (debug_)
+                System.out.println("Ultrasonic Front: " + RobotMap.helmsman.getForwardUltrasonicDistance() + " - " + "Ultrasonic Left: " + RobotMap.helmsman.getPortUltrasonicDistance() + " - " + "Ultrasonic Right: " + RobotMap.helmsman.getStarboardUltrasonicDistance());
 
             if (RobotMap.helmsman.getForwardUltrasonicDistance() < inches_){ //drive until x' away from wall
                 ++absoluteCount_;

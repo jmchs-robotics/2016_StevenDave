@@ -24,8 +24,8 @@ import org.usfirst.frc5933.StevenDave.Robot;
 public class EncoderTurnDegrees extends Command {
     private double degrees_ = 0;
     private boolean useDumbDashboard_ = true;
-    private double degreesToRotations_ = 1;  // FIXME: Put a reasonable default value here.
-    
+    private double degreesToRotations_ = 0.0215;
+
     public EncoderTurnDegrees(double degrees) {
         degrees_ = degrees;
         useDumbDashboard_ = false;
