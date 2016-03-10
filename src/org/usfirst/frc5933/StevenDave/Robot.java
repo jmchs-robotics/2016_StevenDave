@@ -121,6 +121,10 @@ public class Robot extends IterativeRobot {
             autonomousCommand = new EncoderDriveStraight();
         } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_EC_TRURNDEGREES) == 0) {
             autonomousCommand = new EncoderTurnDegrees();
+        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_GYRO_TURN) == 0) {
+        	autonomousCommand = new GyroTurnDegrees();
+        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_ULTRASONIC) == 0) {
+        	autonomousCommand = new UltrasonicDriveStraight();
         }
 
         System.out.println("Autonomous Command is: " + autonomousCommand.getName());

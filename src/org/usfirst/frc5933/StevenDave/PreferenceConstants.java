@@ -31,6 +31,10 @@ public class PreferenceConstants {
     public static final String AUTONOMOUS_COMMAND_EC_DRIVESTRAIGHT      = "EncoderDriveStraight";
     public static final String AUTONOMOUS_COMMAND_EC_TRURNDEGREES       = "EncoderTurnDegrees";
     
+    public static final String AUTONOMOUS_COMMAND_GYRO_TURN				= "GyroTurnDegrees";
+    
+    public static final String AUTONOMOUS_COMMAND_ULTRASONIC			= "UltrasonicDriveStraight";
+    
     public static final String DEBUG_SUBSYSTEM_DRIVE_TRAIN_KEY          = "DebugDriveTrain";
     
     public static final String CLOSED_LOOP_FEEDFORWARD_KEY              = "ClosedLoopFeedForward";
