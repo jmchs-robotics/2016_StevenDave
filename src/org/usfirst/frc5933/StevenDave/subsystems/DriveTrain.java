@@ -245,7 +245,7 @@ public class DriveTrain extends Subsystem {
         frontRightMotor.changeControlMode(mode);
     }
 
-    // Set up the position movement variables adn configuration.
+    // Set up the position movement variables and configuration.
     public void startPositionMovement(double leftRotations, double rightRotations) {
         configForAutonomous();
 
