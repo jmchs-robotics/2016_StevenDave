@@ -135,17 +135,20 @@ public class Robot extends IterativeRobot {
             case PreferenceConstants.AUTONOMOUS_COMMAND_SPYBOX:
                 autonomousCommand = new SpyBox();
                 break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_EC_DRIVESTRAIGHT:
+                autonomousCommand = new EncoderDriveStraight();
+                break;
             case PreferenceConstants.AUTONOMOUS_COMMAND_EC_TRURNDEGREES:
                 autonomousCommand = new EncoderTurnDegrees();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_GYRO_DRIVESTRAIGHT:
+                autonomousCommand = new GyroDriveStraight();
                 break;
             case PreferenceConstants.AUTONOMOUS_COMMAND_GYRO_TURN:
                 autonomousCommand = new GyroTurnDegrees();
                 break;
-            case PreferenceConstants.AUTONOMOUS_COMMAND_ULTRASONIC:
+            case PreferenceConstants.AUTONOMOUS_COMMAND_UC_DRIVESTRAIGHT:
                 autonomousCommand = new UltrasonicDriveStraight();
-                break;
-            case PreferenceConstants.AUTONOMOUS_COMMAND_EC_DRIVESTRAIGHT:
-                autonomousCommand = new EncoderDriveStraight();
                 break;
         }
 
