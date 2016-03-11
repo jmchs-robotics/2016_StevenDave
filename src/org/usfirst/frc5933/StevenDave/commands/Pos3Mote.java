@@ -52,11 +52,11 @@ public class Pos3Mote extends CommandGroup {
         double dg2 = 109; //Degrees
         double l3 = 10.5 * 12; //Inches
 
-        addSequential(new GyroDriveStraight(path3Speed, l1)); // TODO: The inches are not right
-        addSequential(new GyroTurnDegrees(path3Speed, dg1)); // TODO: The degrees are not right
-        addSequential(new GyroDriveStraight(path3Speed, l2)); // TODO: The inches are not right
-        addSequential(new GyroTurnDegrees(path3Speed, dg2)); // TODO: The degrees are not right
-        addSequential(new GyroDriveStraight(path3Speed, l3)); // TODO: The inches are not right
+        addSequential(new EncoderDriveStraight(l1)); // TODO: The inches are not right
+        addSequential(new EncoderTurnDegrees(dg1)); // TODO: The degrees are not right
+        addSequential(new EncoderDriveStraight(l2)); // TODO: The inches are not right
+        addSequential(new EncoderTurnDegrees(dg2)); // TODO: The degrees are not right
+        addSequential(new EncoderDriveStraight(l3)); // TODO: The inches are not right
         addSequential(new ToggleReverseSpindle(5));
     } 
 }
