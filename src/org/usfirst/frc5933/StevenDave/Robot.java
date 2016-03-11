@@ -80,51 +80,73 @@ public class Robot extends IterativeRobot {
         if (!prefs.containsKey(PreferenceConstants.AUTONOMOUS_COMMAND_KEY)) {
             return;
         }
-        String ac = prefs.getString(PreferenceConstants.AUTONOMOUS_COMMAND_KEY, PreferenceConstants.BACKUP_VALUE);
-        if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS1_LOWBAR) == 0) {
-            autonomousCommand = new Pos1LowBar(); 
-        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS2_MOTE) == 0) {
-            autonomousCommand = new Pos2Mote(); 
-        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS2_ROCKWALL) == 0) {
-            autonomousCommand = new Pos2RockWall(); 
-        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS2_RAMPART) == 0) {
-            autonomousCommand = new Pos2Rampart();
-        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS2_ROUGHTERRAIN) == 0) {
-            autonomousCommand = new Pos2RoughTerrain();
-        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS3_MOTE) == 0) {
-            autonomousCommand = new Pos3Mote(); 
-        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS3_ROCKWALL) == 0) {
-            autonomousCommand = new Pos3RockWall(); 
-        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS3_RAMPART) == 0) {
-            autonomousCommand = new Pos3Rampart();
-        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS3_ROUGHTERRAIN) == 0) {
-            autonomousCommand = new Pos3RoughTerrain();
-        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS4_MOTE) == 0) {
-            autonomousCommand = new Pos4Mote(); 
-        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS4_ROCKWALL) == 0) {
-            autonomousCommand = new Pos4RockWall(); 
-        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS4_ROCKWALL) == 0) {
-            autonomousCommand = new Pos4Rampart();
-        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS4_ROUGHTERRAIN) == 0) {
-            autonomousCommand = new Pos4RoughTerrain();
-        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS5_MOTE) == 0) {
-            autonomousCommand = new Pos5Mote(); 
-        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS5_ROCKWALL) == 0) {
-            autonomousCommand = new Pos5RockWall(); 
-        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS5_RAMPART) == 0) {
-            autonomousCommand = new Pos5Rampart();
-        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_POS5_ROUGHTERRAIN) == 0) {
-            autonomousCommand = new Pos5RoughTerrain();
-        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_SPYBOX) == 0) {
-            autonomousCommand = new SpyBox();
-        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_EC_DRIVESTRAIGHT) == 0) {
-            autonomousCommand = new EncoderDriveStraight();
-        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_EC_TRURNDEGREES) == 0) {
-            autonomousCommand = new EncoderTurnDegrees();
-        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_GYRO_TURN) == 0) {
-            autonomousCommand = new GyroTurnDegrees();
-        } else if (ac.compareTo(PreferenceConstants.AUTONOMOUS_COMMAND_ULTRASONIC) == 0) {
-            autonomousCommand = new UltrasonicDriveStraight();
+        switch (prefs.getString(PreferenceConstants.AUTONOMOUS_COMMAND_KEY, PreferenceConstants.BACKUP_VALUE)) {
+            case PreferenceConstants.AUTONOMOUS_COMMAND_POS1_LOWBAR:
+                autonomousCommand = new Pos1LowBar();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_POS2_MOTE:
+                autonomousCommand = new Pos2Mote();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_POS2_ROCKWALL:
+                autonomousCommand = new Pos2RockWall();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_POS2_RAMPART:
+                autonomousCommand = new Pos2Rampart();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_POS2_ROUGHTERRAIN:
+                autonomousCommand = new Pos2RoughTerrain();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_POS3_MOTE:
+                autonomousCommand = new Pos3Mote();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_POS3_ROCKWALL:
+                autonomousCommand = new Pos3RockWall();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_POS3_RAMPART:
+                autonomousCommand = new Pos3Rampart();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_POS3_ROUGHTERRAIN:
+                autonomousCommand = new Pos3RoughTerrain();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_POS4_MOTE:
+                autonomousCommand = new Pos4Mote();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_POS4_ROCKWALL:
+                autonomousCommand = new Pos4RockWall();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_POS4_RAMPART:
+                autonomousCommand = new Pos4Rampart();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_POS4_ROUGHTERRAIN:
+                autonomousCommand = new Pos4RoughTerrain();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_POS5_MOTE:
+                autonomousCommand = new Pos5Mote();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_POS5_ROCKWALL:
+                autonomousCommand = new Pos5RockWall();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_POS5_RAMPART:
+                autonomousCommand = new Pos5Rampart();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_POS5_ROUGHTERRAIN:
+                autonomousCommand = new Pos5RoughTerrain();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_SPYBOX:
+                autonomousCommand = new SpyBox();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_EC_TRURNDEGREES:
+                autonomousCommand = new EncoderTurnDegrees();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_GYRO_TURN:
+                autonomousCommand = new GyroTurnDegrees();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_ULTRASONIC:
+                autonomousCommand = new UltrasonicDriveStraight();
+                break;
+            case PreferenceConstants.AUTONOMOUS_COMMAND_EC_DRIVESTRAIGHT:
+                autonomousCommand = new EncoderDriveStraight();
+                break;
         }
 
         System.out.println("Autonomous Command is: " + autonomousCommand.getName());
