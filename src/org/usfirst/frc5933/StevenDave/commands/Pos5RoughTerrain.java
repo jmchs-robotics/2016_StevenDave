@@ -54,11 +54,11 @@ public class Pos5RoughTerrain extends CommandGroup {
         double dg2 = 135;
 
 
-        addSequential(new GyroDriveStraight(path5Speed, l1)); // TODO: The inches are not right
-        addSequential(new GyroTurnDegrees(path5Speed, dg1)); // TODO: The degrees are not right
-        addSequential(new GyroDriveStraight(path5Speed, l2)); // TODO: The inches are not right
-        addSequential(new GyroTurnDegrees(path5Speed, dg2)); // TODO: The degrees are not right
-        addSequential(new GyroDriveStraight(path5Speed, l3)); // TODO: The inches are not right
+        addSequential(new EncoderDriveStraight(l1)); // TODO: The inches are not right
+        addSequential(new EncoderTurnDegrees(dg1)); // TODO: The degrees are not right
+        addSequential(new EncoderDriveStraight(l2)); // TODO: The inches are not right
+        addSequential(new EncoderTurnDegrees(dg2)); // TODO: The degrees are not right
+        addSequential(new EncoderDriveStraight(l3)); // TODO: The inches are not right
         addSequential(new ToggleReverseSpindle(5));
 
     } 
