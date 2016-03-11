@@ -49,12 +49,10 @@ public class Pos1LowBar extends CommandGroup {
         addParallel(new LiftingArmDown(1));
 
         RobotMap.helmsman.resetGyro();
-        addSequential(new EncoderDriveStraight(65);
+        addSequential(new EncoderDriveStraight(65));
         addSequential(new EncoderTurnDegrees(173));
-        RobotMap.helmsman.resetEncoder();
         addSequential(new EncoderDriveStraight(65));
         addSequential(new EncoderTurnDegrees(174));
-        RobotMap.helmsman.resetEncoder();
         addSequential(new EncoderDriveStraight(63));
     } 
 }
