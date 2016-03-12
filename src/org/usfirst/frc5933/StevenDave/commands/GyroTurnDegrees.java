@@ -40,12 +40,16 @@ public class GyroTurnDegrees extends Command {
     private static final int TURN_MAX_TRIES = 1000;
     private int tries = TURN_MAX_TRIES;
 
-    private int desired;
+    private double desired;
     private double startingAngle;
     private double now;
 
+    @Deprecated
     public GyroTurnDegrees(double speed, double degrees) {
-        speed_ = speed;
+        this(degrees);
+    }
+
+    public GyroTurnDegrees(double degrees) {
         degrees_ = degrees;
         useDumbDashboard_ = false;
         // use the preferences to determine if we should debug this subsystem
@@ -81,7 +85,7 @@ public class GyroTurnDegrees extends Command {
         startingAngle = RobotMap.helmsman.getCurrentGyroAngle();
         now = startingAngle;
         //final double desired = now + degrees;
-        desired = 57;
+        desired = degrees_;
 
         // This call blocks execution, (not really ideal, but hey lets go with it for now)
         // so the operation will return finish during init, so there is no need for us
