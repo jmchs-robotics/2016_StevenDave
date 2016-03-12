@@ -431,8 +431,8 @@ public class DriveTrain extends Subsystem {
         setTalonFeedbackDevice(frontLeftMotor);
         setTalonFeedbackDevice(frontRightMotor);
 
-        configVoltages(frontLeftMotor, 0, 12);
-        configVoltages(frontRightMotor, 0, 12);
+        configVoltages(frontLeftMotor, 0, 6);
+        configVoltages(frontRightMotor, 0, 6);
 
         /* set the allowable closed-loop error,
          * Closed-Loop output will be neutral within this range.
