@@ -189,36 +189,63 @@ public class DriveTrain extends Subsystem {
     // must be reversed.
     // This type of control loop can work, but to be anywhere close to accurate
     // it has to be run very slowly.
-    public void gyroTurnDegrees(double speed, double degrees) {
+    public void gyroTurnDegrees(double degrees) {
         RobotMap.helmsman.resetGyro();
         final double startingAngle = RobotMap.helmsman.getCurrentGyroAngle();
         double now = startingAngle;
-        final double desired = now + degrees;
+        //final double desired = now + degrees;
+        final double desired = 57;
 
         int tries = TURN_MAX_TRIES;
 
         if (desired > startingAngle) {
             do {
-                robotDrive.tankDrive(-speed, speed);
+                robotDrive.tankDrive(-0.8,0.8); // -speed, speed);
                 now = RobotMap.helmsman.getCurrentGyroAngle();
+                System.out.println("Angle top group: " + now);
                 --tries;
                 if (tries == 0) {
                     if (debug_)
                         System.err.println("Failed to turn specified degrees.");
                     break;
                 }
-            } while (now < desired);
+            } while(now < desired-60);
+
+            do {
+                robotDrive.tankDrive(-0.5,0.5); // -speed, speed);
+                now = RobotMap.helmsman.getCurrentGyroAngle();
+                System.out.println("Angle top group: " + now);
+                --tries;
+                if (tries == 0) {
+                    if (debug_)
+                        System.err.println("Failed to turn specified degrees.");
+                    break;
+                }
+            } while(now < desired-2);
         } else {
             do {
-                robotDrive.tankDrive(speed, -speed);
+                robotDrive.tankDrive(0.8, -0.8);
                 now = RobotMap.helmsman.getCurrentGyroAngle();
+                System.out.println("Angle bottom group: " + now);
                 --tries;
                 if (tries == 0) {
                     if (debug_)
                         System.err.println("Failed to turn specified degrees.");
                     break;
                 }
-            } while (now > startingAngle + degrees);
+            } while(now > startingAngle + degrees);
+
+            do {
+                robotDrive.tankDrive(-0.5,0.5); // -speed, speed);
+                now = RobotMap.helmsman.getCurrentGyroAngle();
+                System.out.println("Angle top group: " + now);
+                --tries;
+                if (tries == 0) {
+                    if (debug_)
+                        System.err.println("Failed to turn specified degrees.");
+                    break;
+                }
+            } while(now < desired-2);
         }
         stop();
     }
@@ -258,7 +285,6 @@ public class DriveTrain extends Subsystem {
 
         targetLeftPosition_ = frontLeftMotor.getPosition() + leftRotations;
         targetRightPosition_ = frontRightMotor.getPosition() + rightRotations;
-
         // The rear motors are supposed to be in follow mode,
         // so we don't have to set the position for these
         // motors.

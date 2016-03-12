@@ -12,11 +12,13 @@
 package org.usfirst.frc5933.StevenDave.commands;
 
 import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc5933.StevenDave.PreferenceConstants;
 import org.usfirst.frc5933.StevenDave.Robot;
+import org.usfirst.frc5933.StevenDave.RobotMap;
 
 /**
  *
@@ -59,11 +61,12 @@ public class GyroTurnDegrees extends Command {
             degrees_ = SmartDashboard.getNumber("Degrees for turning");
         }
         Robot.driveTrain.enableBrakeMode(true);
+        Robot.driveTrain.configForTeleopMode();
         // This call blocks execution, (not really ideal, but hey lets go with it for now)
         // so the operation will return finish during init, so there is no need for us
         // to call anything in execute. This allows us to return true for the isFinished
         // method since we will have finished the turn before isFinished has been called.
-        Robot.driveTrain.gyroTurnDegrees(speed_ , degrees_);
+        Robot.driveTrain.gyroTurnDegrees(-degrees_);
     }
 
     // Called repeatedly when this Command is scheduled to run
