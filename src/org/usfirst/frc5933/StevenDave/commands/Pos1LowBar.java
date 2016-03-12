@@ -51,8 +51,11 @@ public class Pos1LowBar extends CommandGroup {
 
         RobotMap.helmsman.resetGyro();
         addSequential(new EncoderDriveStraight(195));
-        addSequential(new GyroTurnDegrees(.8, -57));
-        RobotMap.helmsman.resetGyro();
+        addSequential(new GyroTurnDegrees(-57));
         addSequential(new EncoderDriveStraight(138));
+
+        addSequential(new ToggleReverseSpindle(2));
+
+        //addSequential(new EncoderDriveStraight(-138)); // This drives backward after
     } 
 }
