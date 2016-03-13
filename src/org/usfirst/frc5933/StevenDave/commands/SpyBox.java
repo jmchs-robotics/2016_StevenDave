@@ -56,10 +56,8 @@ public class SpyBox extends CommandGroup {
         double dg2 = 90;
 
 
-        addSequential(new GyroTurnDegrees(path6Speed, dg1)); //May have to initially turn 
-        addSequential(new GyroDriveStraight(path6Speed, l1)); 
-        addSequential(new GyroTurnDegrees(path6Speed, dg2));
-        addSequential(new GyroDriveStraight(path6Speed, l2)); 
-        addSequential(new ToggleReverseSpindle(5));
+        addSequential(new EncoderDriveStraight(121));
+        addSequential(new EncoderDriveStraight(30));
+        addParallel(new ToggleReverseSpindle(4));
     } 
 }

@@ -13,6 +13,7 @@ package org.usfirst.frc5933.StevenDave.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
+import org.usfirst.frc5933.StevenDave.Robot;
 import org.usfirst.frc5933.StevenDave.RobotMap;
 import org.usfirst.frc5933.StevenDave.subsystems.*;
 
@@ -49,10 +50,12 @@ public class Pos1LowBar extends CommandGroup {
         addParallel(new LiftingArmDown(1));
 
         RobotMap.helmsman.resetGyro();
-        addSequential(new EncoderDriveStraight(65));
-        addSequential(new EncoderTurnDegrees(173));
-        addSequential(new EncoderDriveStraight(65));
-        addSequential(new EncoderTurnDegrees(174));
-        addSequential(new EncoderDriveStraight(63));
+        addSequential(new EncoderDriveStraight(195));
+        addSequential(new GyroTurnDegrees(-57));
+        addSequential(new EncoderDriveStraight(138));
+
+        addSequential(new ToggleReverseSpindle(2));
+
+        //addSequential(new EncoderDriveStraight(-138)); // This drives backward after
     } 
 }

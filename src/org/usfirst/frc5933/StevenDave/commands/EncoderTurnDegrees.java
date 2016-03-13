@@ -24,7 +24,7 @@ import org.usfirst.frc5933.StevenDave.Robot;
 public class EncoderTurnDegrees extends Command {
     private double degrees_ = 0;
     private boolean useDumbDashboard_ = true;
-    private double degreesToRotations_ = 0.0215;
+    private double degreesToRotations_ = 0.021;
 
     public EncoderTurnDegrees(double degrees) {
         degrees_ = degrees;
@@ -55,13 +55,8 @@ public class EncoderTurnDegrees extends Command {
         }
         degreesToRotations_ = Preferences.getInstance().getDouble(PreferenceConstants.DEGREES_TO_ROTATIONS, degreesToRotations_);
 
-        double leftRotations = degreesToRotations_ * degrees_;
+        double leftRotations = degreesToRotations_ * -degrees_;
         double rightRotations = degreesToRotations_ * degrees_;
-        if (degrees_ > 0) {
-            leftRotations *= -1;
-        } else {
-            rightRotations *= -1;
-        }
 
         Robot.driveTrain.startPositionMovement(leftRotations, rightRotations);
     }
